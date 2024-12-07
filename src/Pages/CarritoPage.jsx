@@ -1,8 +1,20 @@
-import React, { useContext } from 'react';
-import { CarritoContext } from '../context/CarritoContext'; // Importa correctamente el contexto
+import React, { useContext, useState } from 'react';
+import { CarritoContext } from '../context/CarritoContext';
 
 const CarritoPage = () => {
-  const { listaCompras, aumentarCompra, disminuirCantidad, eliminarCompra } = useContext(CarritoContext);
+  const { listaCompras, aumentarCompra, disminuirCantidad, eliminarCompra, limpiarCarrito } = useContext(CarritoContext);
+  const [mensajeCompra, setMensajeCompra] = useState('');
+
+  const total = listaCompras.reduce((acc, item) => acc + (item.price * (item.cantidad || 1)), 0);
+
+  const manejarCompra = () => {
+    if (listaCompras.length > 0) {
+      setMensajeCompra(`Gracias por tu compra. Total: ${total.toFixed(2)}$`);
+      limpiarCarrito();
+    } else {
+      setMensajeCompra('No hay productos en el carrito para comprar.');
+    }
+  };
 
   return (
     <>
@@ -23,7 +35,7 @@ const CarritoPage = () => {
             listaCompras.map((item) => (
               <tr key={item.id}>
                 <th scope="row">{item.title}</th>
-                <td>{item.price}</td>
+                <td>{item.price.toFixed(2)}$</td>
                 <td>{item.cantidad || 1}</td>
                 <td>
                   <button
@@ -39,7 +51,7 @@ const CarritoPage = () => {
                     type="button"
                     className="btn btn-warning"
                     onClick={() => disminuirCantidad(item.id)}
-                    disabled={item.cantidad <= 1} // Deshabilitar si la cantidad es 1
+                    disabled={item.cantidad <= 1}
                   >
                     Disminuir
                   </button>
@@ -65,9 +77,21 @@ const CarritoPage = () => {
         </tbody>
       </table>
 
+      {listaCompras.length > 0 && (
+        <div className="total">
+          <h3>Total: {total.toFixed(2)}$</h3>
+        </div>
+      )}
+
       <div className="d-grid gap-2">
-        <button className="btn btn-primary">Comprar</button>
+        <button className="btn btn-primary" onClick={manejarCompra}>Comprar</button>
       </div>
+
+      {mensajeCompra && (
+        <div className="alert alert-info mt-3">
+          {mensajeCompra}
+        </div>
+      )}
     </>
   );
 };

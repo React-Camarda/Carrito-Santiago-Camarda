@@ -7,7 +7,7 @@ const initialState = [];
 const comprasReducer = (state = initialState, action = {}) => {
     switch (action.type) {
         case "[Carrito] Agregar Compra":
-            return [...state, action.payload];
+            return [...state, { ...action.payload, cantidad: 1 }];
         case "[Carrito] Aumentar Compra":
             return state.map(compra => 
                 compra.id === action.payload
@@ -22,6 +22,8 @@ const comprasReducer = (state = initialState, action = {}) => {
             );
         case "[Carrito] Eliminar Compra":
             return state.filter(compra => compra.id !== action.payload);
+        case "[Carrito] Limpiar Carrito": // Nueva acción para limpiar el carrito
+            return initialState; // Reinicia el carrito a su estado inicial
         default:
             return state;
     }
@@ -31,10 +33,9 @@ const CarritoProvider = ({ children }) => {
     const [listaCompras, dispatch] = useReducer(comprasReducer, initialState);
 
     const agregarCompra = (compra) => {
-        compra.cantidad=1
         const action = {
             type: '[Carrito] Agregar Compra',
-            payload: compra  // Cambiar playload a payload
+            payload: compra
         };
         dispatch(action);
     };
@@ -42,7 +43,7 @@ const CarritoProvider = ({ children }) => {
     const aumentarCompra = (id) => {
         const action = {
             type: '[Carrito] Aumentar Compra',
-            payload: id  // Cambiar playload a payload
+            payload: id
         };
         dispatch(action);
     };
@@ -50,7 +51,7 @@ const CarritoProvider = ({ children }) => {
     const disminuirCantidad = (id) => {
         const action = {
             type: '[Carrito] Disminuir Compra',
-            payload: id  // Cambiar playload a payload
+            payload: id
         };
         dispatch(action);
     };
@@ -58,7 +59,14 @@ const CarritoProvider = ({ children }) => {
     const eliminarCompra = (id) => {
         const action = {
             type: '[Carrito] Eliminar Compra',
-            payload: id  // Cambiar playload a payload
+            payload: id
+        };
+        dispatch(action);
+    };
+
+    const limpiarCarrito = () => {
+        const action = {
+            type: '[Carrito] Limpiar Carrito' // Utiliza la nueva acción
         };
         dispatch(action);
     };
@@ -69,7 +77,8 @@ const CarritoProvider = ({ children }) => {
             agregarCompra,
             aumentarCompra,
             disminuirCantidad,
-            eliminarCompra
+            eliminarCompra,
+            limpiarCarrito // Asegúrate de incluir esto aquí
         }}>
             {children}
         </CarritoContext.Provider>
