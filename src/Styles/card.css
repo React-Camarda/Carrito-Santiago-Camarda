@@ -64,4 +64,22 @@
     flex-wrap: wrap;
     justify-content: space-between;
   }
-  
+  .cantidad-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.boton-cantidad {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.cantidad {
+    width: 30px;
+    text-align: center;
+}
