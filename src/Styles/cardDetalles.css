@@ -1,40 +1,47 @@
-/* DetalleProducto.css */
+/* Estilos para DetalleProducto */
 .detalle-producto {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 20px;
+    margin: 20px auto; /* Centra el componente */
     padding: 20px;
     border: 1px solid #444; /* Borde más oscuro */
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
-    background-color: #1e1e1e; /* Fondo oscuro */
+    border-radius: 10px; /* Esquinas más suaves */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Sombra más pronunciada */
+    background-color: #2a2a2a; /* Fondo oscuro */
     color: #ffffff; /* Texto blanco */
+    max-width: 600px; /* Limita el ancho máximo */
+    transition: transform 0.3s; /* Añadir efecto al hover */
+}
+
+.detalle-producto:hover {
+    transform: translateY(-2px); /* Efecto de elevación al pasar el mouse */
 }
 
 .detalle-producto h1 {
     font-size: 2rem;
     color: #ffffff; /* Color blanco */
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    text-align: center; /* Alineación central */
 }
 
 .detalle-producto img {
-    max-width: 80%; /* Tamaño más pequeño */
+    max-width: 100%; /* Asegura que la imagen no se desborde */
     height: auto;
-    border-radius: 8px;
-    margin-bottom: 20px;
+    border-radius: 10px; /* Esquinas más suaves */
+    margin-bottom: 15px;
 }
 
 .detalle-producto p {
-    font-size: 1.2rem;
-    color: #bbbbbb; /* Color gris claro */
+    font-size: 1.5rem; /* Tamaño de fuente más grande */
+    color: #e0e0e0; /* Color gris claro */
     margin: 10px 0;
 }
 
-.detalle-producto .cantidad-container {
+.cantidad-container {
     display: flex;
     align-items: center;
-    margin: 20px 0;
+    margin: 15px 0; /* Margen ajustado */
 }
 
 .boton-cantidad {
@@ -56,10 +63,12 @@
 .boton-quitar {
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 12px 20px; /* Ajustar el padding para más comodidad */
     font-size: 1rem;
     cursor: pointer;
     transition: background-color 0.3s;
+    margin: 5px; /* Espaciado entre botones */
+    width: calc(100% - 20px); /* Botones ocupan todo el ancho menos el margen */
 }
 
 .boton-agregar {
@@ -78,4 +87,20 @@
 
 .boton-quitar:hover {
     background-color: #a04545; /* Color más oscuro al pasar el mouse */
+}
+
+/* Media query para responsividad */
+@media (max-width: 768px) {
+    .detalle-producto {
+        margin: 10px; /* Margen ajustado en pantallas pequeñas */
+        padding: 15px; /* Ajustar padding en pantallas pequeñas */
+    }
+
+    .detalle-producto h1 {
+        font-size: 1.5rem; /* Reducir tamaño de fuente en pantallas pequeñas */
+    }
+
+    .detalle-producto p {
+        font-size: 1.2rem; /* Reducir tamaño de fuente en pantallas pequeñas */
+    }
 }

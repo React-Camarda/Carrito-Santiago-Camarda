@@ -7,6 +7,12 @@ const initialState = [];
 const comprasReducer = (state = initialState, action = {}) => {
     switch (action.type) {
         case "[Carrito] Agregar Compra":
+            // Verifica si la compra ya existe en el carrito
+            const existingCompra = state.find(compra => compra.id === action.payload.id);
+            if (existingCompra) {
+                // Si existe, retorna el estado actual sin agregarlo de nuevo
+                return state;
+            }
             return [...state, { ...action.payload, cantidad: 1 }];
         case "[Carrito] Aumentar Compra":
             return state.map(compra => 
