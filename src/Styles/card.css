@@ -1,85 +1,114 @@
+/* Estilos generales */
+body {
+  background-color: #121212; /* Fondo negro para toda la página */
+  color: #ffffff; /* Texto blanco */
+  font-family: Arial, sans-serif; /* Fuente de la aplicación */
+  margin: 0;
+  padding: 0;
+}
+
 /* Estilos para la tarjeta */
 .tarjeta {
-    display: flex;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .tarjeta-imagen {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-right: 10px;
-  }
-  
-  .tarjeta-contenido {
-    flex: 1;
-  }
-  
-  .tarjeta-titulo {
-    margin: 0;
-  }
-  
-  .tarjeta-descripcion {
-    margin: 0;
-    margin-bottom: 10px;
-  }
-  
-  .tarjeta-precio {
-    margin: 0;
-    font-weight: bold;
-  }
-  
-  .boton-agregar {
-    background-color: #4caf50;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .boton-agregar:hover {
-    background-color: #45a049;
-  }
-  .boton-quitar {
-    background-color: #af4c4c;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  .boton-quitar:hover {
-    background-color: #a04545;
-  }
-  
-  /* Estilos para el carrito */
-  .carrito {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-  }
-  .cantidad-container {
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
+  display: flex;
+  border: 1px solid #444; /* Borde más oscuro */
+  border-radius: 8px; /* Bordes redondeados más suaves */
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #1e1e1e; /* Fondo de la tarjeta */
+  transition: transform 0.2s; /* Efecto de hover */
+}
+
+.tarjeta:hover {
+  transform: scale(1.02); /* Efecto de hover para ampliar la tarjeta */
+}
+
+.tarjeta-imagen {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px; /* Bordes redondeados de la imagen */
+  margin-right: 15px;
+}
+
+.tarjeta-contenido {
+  flex: 1;
+}
+
+.tarjeta-titulo {
+  margin: 0;
+  font-size: 1.5rem; /* Tamaño de fuente del título */
+  color: #ffffff; /* Color blanco */
+}
+
+.tarjeta-descripcion {
+  margin: 0;
+  margin-bottom: 10px;
+  color: #bbbbbb; /* Color gris para la descripción */
+}
+
+.tarjeta-precio {
+  margin: 0;
+  font-weight: bold;
+  color: #ff9800; /* Color del precio */
+}
+
+/* Botones */
+.boton-agregar {
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 15px; /* Tamaño del botón */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.boton-agregar:hover {
+  background-color: #45a049;
+}
+
+.boton-quitar {
+  background-color: #af4c4c;
+  color: white;
+  border: none;
+  padding: 8px 15px; /* Tamaño del botón */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.boton-quitar:hover {
+  background-color: #a04545;
+}
+
+/* Estilos para el carrito */
+.carrito {
+  display: flex;
+  flex-direction: column; /* Colocar en columnas */
+  align-items: center; /* Alinear al centro */
+  padding: 20px; /* Espaciado en el carrito */
+}
+
+/* Controles de cantidad */
+.cantidad-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
 }
 
 .boton-cantidad {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    margin: 0 5px;
-    cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  margin: 0 5px;
+  cursor: pointer;
 }
 
 .cantidad {
-    width: 30px;
-    text-align: center;
+  width: 30px;
+  text-align: center;
+  color: #000; /* Texto negro para la cantidad */
+  background-color: #ffffff; /* Fondo blanco para resaltar */
+  border-radius: 4px;
 }

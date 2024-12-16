@@ -1,46 +1,72 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import React, { useContext, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { ProductosContext } from '../context/ProductosContext';
 import { CarritoContext } from '../context/CarritoContext';
-import Card from '../Components/Card';
-
+import '../Styles/cardDetalles.css'
 const DetalleProducto = () => {
-    const { id } = useParams(); // Obtiene el id del producto de la URL
-    const { productos } = useContext(ProductosContext);
-    const { agregarCompra } = useContext(CarritoContext);
-    
-    const [producto, setProducto] = useState(null);
-    const navigate = useNavigate(); // Cambiado de useHistory a useNavigate
+  const { id } = useParams();
+  const { productos } = useContext(ProductosContext);
+  const { agregarCompra, eliminarCompra, aumentarCompra, disminuirCantidad } = useContext(CarritoContext);
 
-    useEffect(() => {
-        const productoEncontrado = productos.find((prod) => prod.id === parseInt(id));
-        if (productoEncontrado) {
-            setProducto(productoEncontrado);
-        } else {
-            // Manejar el caso en que no se encuentra el producto
-            navigate('/compras'); // Redirigir a la página de compras
-        }
-    }, [id, productos, navigate]); // Cambiar history por navigate
+  const producto = productos.find((prod) => prod.id === parseInt(id, 10));
+  const [added, setAdded] = useState(false); // Estado para saber si está en el carrito
+  const [cantidad, setCantidad] = useState(1); // Estado para la cantidad
 
-    const handleAgregar = () => {
-        agregarCompra(producto);
-    };
+  if (!producto) {
+    return <p>Producto no encontrado</p>;
+  }
 
-    if (!producto) {
-        return <p>Cargando producto...</p>;
+  const clickAgregar = () => {
+    agregarCompra({ ...producto, cantidad });
+    setAdded(true);
+  };
+
+  const clickQuitar = () => {
+    eliminarCompra(producto.id);
+    setAdded(false);
+  };
+
+  const aumentarCantidad = () => {
+    setCantidad(cantidad + 1);
+    if (added) {
+      aumentarCompra(producto.id);
     }
+  };
 
-    return (
-        <div className="detalle-producto">
-            <Card
-                imagen={producto.image}
-                titulo={producto.title}
-                descripcion={producto.description}
-                precio={producto.price}
-            />
-            <button onClick={handleAgregar}>Agregar al Carrito</button>
+  const handleDisminuirCantidad = () => {
+    if (cantidad > 1) {
+      setCantidad(cantidad - 1);
+      if (added) {
+        disminuirCantidad(producto.id); // Asegúrate de que esta función se llame correctamente
+      }
+    }
+  };
+
+  return (
+    <div className="detalle-producto">
+      <h1>{producto.title}</h1>
+      <img src={producto.image} alt={producto.title} />
+      <p>{producto.description}</p>
+      <p>${producto.price.toFixed(2)}</p>
+
+      {/* Controles para agregar/eliminar productos */}
+      {added && (
+        <div className="cantidad-container">
+          <button onClick={handleDisminuirCantidad} className="boton-cantidad">-</button>
+          <span className="cantidad">{cantidad}</span>
+          <button onClick={aumentarCantidad} className="boton-cantidad">+</button>
         </div>
-    );
+      )}
+
+      <button
+        type="button"
+        className={added ? 'boton-quitar' : 'boton-agregar'}
+        onClick={added ? clickQuitar : clickAgregar}
+      >
+        {added ? 'Quitar del Carrito' : 'Agregar al Carrito'}
+      </button>
+    </div>
+  );
 };
 
 export default DetalleProducto;

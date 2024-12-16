@@ -6,29 +6,26 @@ import ComprasPage from './Pages/ComprasPage';
 import CarritoPage from './Pages/CarritoPage';
 import { ProductosProvider } from './context/ProdcutosProvider';
 import CarritoProvider from './context/CarritoProvider';
+
 const CarritoApp = () => {
   return (
-
-    <>
     <ProductosProvider>
-     <NavBar />
-     <CarritoProvider>
-     <div className='container'>
-
-<Routes>
-  <Route path="/" element={<ComprasPage />} />
-  <Route path="/carrito" element={<CarritoPage></CarritoPage>} />
-  <Route path="/producto/:id" element={<DetalleProducto />} /> {/* Ruta para el detalle del producto */}
-
-  <Route path="/*" element={<Navigate to="/" />} />
-</Routes>
-</div>
-
-
-     </CarritoProvider>
-   
+      <CarritoProvider>
+        <NavBar />
+        <main className="container">
+          <Routes>
+            {/* Página principal de compras */}
+            <Route path="/" element={<ComprasPage />} />
+            {/* Página del carrito */}
+            <Route path="/carrito" element={<CarritoPage />} />
+            {/* Detalle del producto */}
+            <Route path="/producto/:id" element={<DetalleProducto />} />
+            {/* Redirección para rutas no existentes */}
+            <Route path="/*" element={<Navigate to="/" />} />
+          </Routes>
+        </main>
+      </CarritoProvider>
     </ProductosProvider>
-    </>
   );
 };
 

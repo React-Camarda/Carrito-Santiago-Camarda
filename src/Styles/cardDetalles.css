@@ -1,0 +1,81 @@
+/* DetalleProducto.css */
+.detalle-producto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #444; /* Borde más oscuro */
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Sombra más pronunciada */
+    background-color: #1e1e1e; /* Fondo oscuro */
+    color: #ffffff; /* Texto blanco */
+}
+
+.detalle-producto h1 {
+    font-size: 2rem;
+    color: #ffffff; /* Color blanco */
+    margin-bottom: 10px;
+}
+
+.detalle-producto img {
+    max-width: 80%; /* Tamaño más pequeño */
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.detalle-producto p {
+    font-size: 1.2rem;
+    color: #bbbbbb; /* Color gris claro */
+    margin: 10px 0;
+}
+
+.detalle-producto .cantidad-container {
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.boton-cantidad {
+    background-color: #007bff; /* Color del botón de cantidad */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.boton-cantidad:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+}
+
+.boton-agregar,
+.boton-quitar {
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.boton-agregar {
+    background-color: #4caf50; /* Color para agregar */
+    color: white;
+}
+
+.boton-agregar:hover {
+    background-color: #45a049; /* Color más oscuro al pasar el mouse */
+}
+
+.boton-quitar {
+    background-color: #af4c4c; /* Color para quitar */
+    color: white;
+}
+
+.boton-quitar:hover {
+    background-color: #a04545; /* Color más oscuro al pasar el mouse */
+}

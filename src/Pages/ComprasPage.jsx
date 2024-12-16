@@ -30,18 +30,23 @@ const ComprasPage = () => {
       {productos.length > 0 ? (
         <div className="productos-grid">
           {productos.map((producto) => (
-            <Link to={`/producto/${producto.id}`} key={producto.id} style={{ textDecoration: 'none' }}>
-              <Card
-                imagen={producto.image}
-                titulo={producto.title}
-                descripcion={producto.description}
-                precio={producto.price}
-                handleAgregar={() => handleAgregar(producto)}
-                handleQuitar={() => handleQuitar(producto.id)}
-                handleAumentar={() => handleAumentar(producto.id)}
-                handleDisminuir={() => handleDisminuir(producto.id)}
-              />
-            </Link>
+            <Link
+            to={`/producto/${producto.id}`}
+            key={producto.id}
+            style={{ textDecoration: 'none' }}
+            state={{ producto }}
+          >
+            <Card
+              imagen={producto.image}
+              titulo={producto.title}
+              descripcion={producto.description}
+              precio={producto.price}
+              handleAgregar={() => handleAgregar(producto)}
+              handleQuitar={() => handleQuitar(producto.id)}
+              handleAumentar={() => handleAumentar(producto.id)}
+              handleDisminuir={() => handleDisminuir(producto.id)}
+            />
+          </Link>
           ))}
         </div>
       ) : (
