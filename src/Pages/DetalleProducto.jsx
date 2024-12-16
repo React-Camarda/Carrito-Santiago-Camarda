@@ -10,7 +10,8 @@ const DetalleProducto = () => {
     const { agregarCompra, listaCompras } = useContext(CarritoContext);
     const [cantidad, setCantidad] = useState(1);
 
-    const producto = productos.find(prod => prod.id === id);
+    // Buscar producto, asegurando que IDs sean comparables
+    const producto = productos.find(prod => prod.id.toString() === id);
 
     if (!producto) {
         return <p>Producto no encontrado</p>;
@@ -27,7 +28,7 @@ const DetalleProducto = () => {
     };
 
     return (
-        <div className="detalle-producto"> {/* Clase añadida aquí */}
+        <div className="detalle-producto">
             <h1>{producto.title}</h1>
             <img src={producto.image} alt={producto.title} />
             <p>${producto.price}</p>
