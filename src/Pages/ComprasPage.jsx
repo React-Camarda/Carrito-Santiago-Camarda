@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Card from '../Components/Card';
 import { ProductosContext } from '../context/ProductosContext';
@@ -9,6 +9,7 @@ const ComprasPage = () => {
   const { agregarCompra, aumentarCompra, disminuirCantidad, eliminarCompra } = useContext(CarritoContext);
 
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(''); // Estado para la categoría seleccionada
+  const [productosFiltrados, setProductosFiltrados] = useState(productos); // Estado para los productos filtrados
 
   const handleAgregar = (compra) => {
     agregarCompra(compra);
@@ -30,11 +31,15 @@ const ComprasPage = () => {
     setCategoriaSeleccionada(e.target.value);
   };
 
-  // Filtrar productos por categoría
-  const productosFiltrados =
-    categoriaSeleccionada === ''
-      ? productos
-      : productos.filter((producto) => producto.category === categoriaSeleccionada);
+  // Efecto para actualizar productos filtrados cada vez que cambia la categoría seleccionada
+  useEffect(() => {
+    if (categoriaSeleccionada === '') {
+      setProductosFiltrados(productos); // Mostrar todos los productos si no se selecciona ninguna categoría
+    } else {
+      const filtrados = productos.filter((producto) => producto.category === categoriaSeleccionada);
+      setProductosFiltrados(filtrados);
+    }
+  }, [categoriaSeleccionada, productos]); // Dependencias: cambia si cambia la categoría seleccionada o los productos
 
   return (
     <div className="compras-container">
