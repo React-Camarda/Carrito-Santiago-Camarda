@@ -1,9 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { CarritoContext } from '../context/CarritoContext';
+import { useNavigate } from 'react-router-dom'; // Importar useNavigate
+
 
 const CarritoPage = () => {
   const { listaCompras, aumentarCompra, disminuirCantidad, eliminarCompra, limpiarCarrito } = useContext(CarritoContext);
   const [mensajeCompra, setMensajeCompra] = useState('');
+  const navigate = useNavigate(); // Inicializar el hook de navegación
 
   const total = listaCompras.reduce((acc, item) => acc + (item.price * (item.cantidad || 1)), 0);
 
@@ -11,6 +14,15 @@ const CarritoPage = () => {
     if (listaCompras.length > 0) {
       setMensajeCompra(`Gracias por tu compra. Total: ${total.toFixed(2)}$`);
       limpiarCarrito();
+    } else {
+      setMensajeCompra('No hay productos en el carrito para comprar.');
+    }
+  };
+
+  // Función para redirigir al checkout
+  const irAFormularioCheckout = () => {
+    if (listaCompras.length > 0) {
+      navigate('/checkout'); // Ruta del formulario de checkout
     } else {
       setMensajeCompra('No hay productos en el carrito para comprar.');
     }
@@ -84,7 +96,10 @@ const CarritoPage = () => {
       )}
 
       <div className="d-grid gap-2">
-        <button className="btn btn-primary" onClick={manejarCompra}>Comprar</button>
+        {/* <button className="btn btn-primary" onClick={manejarCompra}>Comprar</button> */}
+        <button className="btn btn-success" onClick={irAFormularioCheckout}>
+          Ir al Checkout
+        </button>
       </div>
 
       {mensajeCompra && (

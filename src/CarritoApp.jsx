@@ -7,6 +7,9 @@ import CarritoPage from './Pages/CarritoPage';
 import { ProductosProvider } from './context/ProdcutosProvider';
 import CarritoProvider from './context/CarritoProvider';
 
+import {CheckOut} from './Components/CheckOut';
+
+
 const CarritoApp = () => {
   return (
     <ProductosProvider>
@@ -22,6 +25,7 @@ const CarritoApp = () => {
             <Route path="/producto/:id" element={<DetalleProducto />} />
             {/* Redirección para rutas no existentes */}
             <Route path="/*" element={<Navigate to="/" />} />
+            <Route path="/checkout" element={<CheckOut />} />
           </Routes>
         </main>
       </CarritoProvider>

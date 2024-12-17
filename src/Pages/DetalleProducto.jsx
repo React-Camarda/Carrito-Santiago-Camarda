@@ -31,6 +31,7 @@ const DetalleProducto = () => {
         <div className="detalle-producto">
             <h1>{producto.title}</h1>
             <img src={producto.image} alt={producto.title} />
+            <p>Categoria:{producto.category}</p>
             <p>${producto.price}</p>
             {/* <div className="cantidad-container">
                 <button className="boton-cantidad" onClick={() => setCantidad(cantidad > 1 ? cantidad - 1 : 1)}>-</button>
