@@ -32,11 +32,11 @@ const DetalleProducto = () => {
             <h1>{producto.title}</h1>
             <img src={producto.image} alt={producto.title} />
             <p>${producto.price}</p>
-            <div className="cantidad-container">
+            {/* <div className="cantidad-container">
                 <button className="boton-cantidad" onClick={() => setCantidad(cantidad > 1 ? cantidad - 1 : 1)}>-</button>
                 <span>{cantidad}</span>
                 <button className="boton-cantidad" onClick={() => setCantidad(cantidad + 1)}>+</button>
-            </div>
+            </div> */}
             <button className="boton-agregar" onClick={clickAgregar}>
                 {existeEnCarrito ? 'Ya en el Carrito' : 'Agregar al Carrito'}
             </button>

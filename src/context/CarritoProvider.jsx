@@ -84,7 +84,7 @@ const CarritoProvider = ({ children }) => {
             aumentarCompra,
             disminuirCantidad,
             eliminarCompra,
-            limpiarCarrito // Asegúrate de incluir esto aquí
+            limpiarCarrito 
         }}>
             {children}
         </CarritoContext.Provider>
